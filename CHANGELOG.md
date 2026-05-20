@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/wyre-technology/node-atera/compare/v1.0.2...v1.0.3) (2026-05-20)
+
+
+### Bug Fixes
+
+* standardize on Node 22, harden HTTP layer, add dependabot ([#2](https://github.com/wyre-technology/node-atera/issues/2)) ([d93bf58](https://github.com/wyre-technology/node-atera/commit/d93bf58588888b925581ca4cfc6be53d6742ae87))
+
 ## [1.0.2](https://github.com/wyre-technology/node-atera/compare/v1.0.1...v1.0.2) (2026-03-02)
 
 
