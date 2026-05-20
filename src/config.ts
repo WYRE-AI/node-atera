@@ -38,6 +38,11 @@ export const DEFAULT_RATE_LIMIT_CONFIG: RateLimitConfig = {
 export const DEFAULT_BASE_URL = 'https://app.atera.com/api/v3';
 
 /**
+ * Default request timeout in milliseconds (30 seconds)
+ */
+export const DEFAULT_TIMEOUT_MS = 30_000;
+
+/**
  * Configuration for the Atera client
  */
 export interface AteraConfig {
@@ -45,6 +50,8 @@ export interface AteraConfig {
   apiKey: string;
   /** Base URL for the API (default: https://app.atera.com/api/v3) */
   baseUrl?: string;
+  /** Request timeout in milliseconds (default: 30000) */
+  timeoutMs?: number;
   /** Rate limiting configuration */
   rateLimit?: Partial<RateLimitConfig>;
 }
@@ -55,6 +62,7 @@ export interface AteraConfig {
 export interface ResolvedConfig {
   apiKey: string;
   baseUrl: string;
+  timeoutMs: number;
   rateLimit: RateLimitConfig;
 }
 
@@ -69,6 +77,7 @@ export function resolveConfig(config: AteraConfig): ResolvedConfig {
   return {
     apiKey: config.apiKey,
     baseUrl: config.baseUrl ?? DEFAULT_BASE_URL,
+    timeoutMs: config.timeoutMs ?? DEFAULT_TIMEOUT_MS,
     rateLimit: {
       ...DEFAULT_RATE_LIMIT_CONFIG,
       ...config.rateLimit,

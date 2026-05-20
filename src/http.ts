@@ -90,12 +90,31 @@ export class HttpClient {
     // Record the request
     this.rateLimiter.recordRequest();
 
-    // Make the request
-    const response = await fetch(url, {
-      method,
-      headers,
-      body: body ? JSON.stringify(body) : undefined,
-    });
+    // Make the request, converting transport failures into typed errors
+    let response: Response;
+    try {
+      response = await fetch(url, {
+        method,
+        headers,
+        body: body ? JSON.stringify(body) : undefined,
+        signal: AbortSignal.timeout(this.config.timeoutMs),
+      });
+    } catch (error) {
+      if (error instanceof Error && error.name === 'TimeoutError') {
+        throw new AteraError(
+          `Request timed out after ${this.config.timeoutMs}ms: ${method} ${url}`,
+          0,
+          error
+        );
+      }
+      throw new AteraError(
+        `Network error during request: ${method} ${url} - ${
+          error instanceof Error ? error.message : String(error)
+        }`,
+        0,
+        error
+      );
+    }
 
     // Handle the response
     return this.handleResponse<T>(response, url, method, body, retryCount);
