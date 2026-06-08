@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/wyre-technology/node-atera/compare/v1.0.3...v1.0.4) (2026-06-08)
+
+
+### Bug Fixes
+
+* **security:** bump vitest + @vitest/coverage-v8 1.x -> 3.2.6 ([#28](https://github.com/wyre-technology/node-atera/issues/28)) ([19ea1b7](https://github.com/wyre-technology/node-atera/commit/19ea1b73c2699872803eb8585d3b19b69a4c5e9e))
+
 ## [1.0.3](https://github.com/wyre-technology/node-atera/compare/v1.0.2...v1.0.3) (2026-05-20)
 
 
