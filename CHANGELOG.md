@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/wyre-technology/node-atera/compare/v1.0.4...v1.0.5) (2026-07-18)
+
+
+### Bug Fixes
+
+* **tsconfig:** restore include/exclude globs ([#44](https://github.com/wyre-technology/node-atera/issues/44)) ([56ba0aa](https://github.com/wyre-technology/node-atera/commit/56ba0aa06156ec54357d8cd27161b60befd48b73))
+
 ## [1.0.4](https://github.com/wyre-technology/node-atera/compare/v1.0.3...v1.0.4) (2026-06-08)
 
 
