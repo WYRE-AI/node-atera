@@ -130,23 +130,42 @@ export class HttpClient {
     body: unknown,
     retryCount: number
   ): Promise<T> {
-    if (response.ok) {
-      // Handle empty responses
-      const contentType = response.headers.get('content-type');
-      if (contentType?.includes('application/json')) {
-        return response.json() as Promise<T>;
-      }
-      // Return empty object for non-JSON responses
-      return {} as T;
+    // Read the body EXACTLY once, as text, for every path. A fetch Response
+    // body is a one-shot stream: response.json() followed by response.text()
+    // in a catch throws "Body is unusable: Body has already been read",
+    // which masked the real (often non-JSON, e.g. WAF/proxy HTML) response
+    // (connectwise-automate-mcp#54).
+    const rawBody = await response.text();
+    let parsedBody: unknown;
+    let bodyIsJson = false;
+    try {
+      parsedBody = JSON.parse(rawBody);
+      bodyIsJson = true;
+    } catch {
+      parsedBody = rawBody;
     }
 
-    // Get response body for error details
-    let responseBody: unknown;
-    try {
-      responseBody = await response.json();
-    } catch {
-      responseBody = await response.text();
+    if (response.ok) {
+      if (bodyIsJson) {
+        return parsedBody as T;
+      }
+      if (rawBody.trim() === '') {
+        // Genuinely empty 200/204 — preserve the historical empty-object shape.
+        return {} as T;
+      }
+      // A 200 whose body isn't JSON is not a success we can use (login pages,
+      // WAF challenges, proxy errors). Surfacing it beats returning {} and
+      // letting the caller believe the API answered.
+      throw new AteraError(
+        `Expected JSON from ${method} ${url} but got ${
+          response.headers.get('content-type') ?? 'no content-type'
+        }: ${rawBody.slice(0, 200)}`,
+        response.status,
+        rawBody.slice(0, 2000)
+      );
     }
+
+    const responseBody: unknown = parsedBody;
 
     switch (response.status) {
       case 400: {
