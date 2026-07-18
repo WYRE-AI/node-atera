@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/wyre-technology/node-atera/compare/v1.0.5...v1.0.6) (2026-07-18)
+
+
+### Bug Fixes
+
+* read HTTP response bodies exactly once ([#54](https://github.com/wyre-technology/node-atera/issues/54)) ([82a4d6e](https://github.com/wyre-technology/node-atera/commit/82a4d6e7faceda18de3ae1751d210c68d804c437))
+
 ## [1.0.5](https://github.com/wyre-technology/node-atera/compare/v1.0.4...v1.0.5) (2026-07-18)
 
 
