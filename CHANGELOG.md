@@ -1,3 +1,10 @@
+## [1.0.7](https://github.com/wyre-technology/node-atera/compare/v1.0.6...v1.0.7) (2026-08-06)
+
+
+### Bug Fixes
+
+* **deps:** ignore unreachable ip-address advisory in dependabot config ([#64](https://github.com/wyre-technology/node-atera/issues/64)) ([c3249d8](https://github.com/wyre-technology/node-atera/commit/c3249d8e3c82ec4ef6baa23b810237a6987cf36c))
+
 ## [1.0.6](https://github.com/wyre-technology/node-atera/compare/v1.0.5...v1.0.6) (2026-07-18)
 
 
