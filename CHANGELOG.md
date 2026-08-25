@@ -1,45 +1,45 @@
-## [1.0.7](https://github.com/wyre-technology/node-atera/compare/v1.0.6...v1.0.7) (2026-08-06)
+## [1.0.7](https://github.com/WYRE-AI/node-atera/compare/v1.0.6...v1.0.7) (2026-08-06)
 
 
 ### Bug Fixes
 
-* **deps:** ignore unreachable ip-address advisory in dependabot config ([#64](https://github.com/wyre-technology/node-atera/issues/64)) ([c3249d8](https://github.com/wyre-technology/node-atera/commit/c3249d8e3c82ec4ef6baa23b810237a6987cf36c))
+* **deps:** ignore unreachable ip-address advisory in dependabot config ([#64](https://github.com/WYRE-AI/node-atera/issues/64)) ([c3249d8](https://github.com/WYRE-AI/node-atera/commit/c3249d8e3c82ec4ef6baa23b810237a6987cf36c))
 
-## [1.0.6](https://github.com/wyre-technology/node-atera/compare/v1.0.5...v1.0.6) (2026-07-18)
-
-
-### Bug Fixes
-
-* read HTTP response bodies exactly once ([#54](https://github.com/wyre-technology/node-atera/issues/54)) ([82a4d6e](https://github.com/wyre-technology/node-atera/commit/82a4d6e7faceda18de3ae1751d210c68d804c437))
-
-## [1.0.5](https://github.com/wyre-technology/node-atera/compare/v1.0.4...v1.0.5) (2026-07-18)
+## [1.0.6](https://github.com/WYRE-AI/node-atera/compare/v1.0.5...v1.0.6) (2026-07-18)
 
 
 ### Bug Fixes
 
-* **tsconfig:** restore include/exclude globs ([#44](https://github.com/wyre-technology/node-atera/issues/44)) ([56ba0aa](https://github.com/wyre-technology/node-atera/commit/56ba0aa06156ec54357d8cd27161b60befd48b73))
+* read HTTP response bodies exactly once ([#54](https://github.com/WYRE-AI/node-atera/issues/54)) ([82a4d6e](https://github.com/WYRE-AI/node-atera/commit/82a4d6e7faceda18de3ae1751d210c68d804c437))
 
-## [1.0.4](https://github.com/wyre-technology/node-atera/compare/v1.0.3...v1.0.4) (2026-06-08)
-
-
-### Bug Fixes
-
-* **security:** bump vitest + @vitest/coverage-v8 1.x -> 3.2.6 ([#28](https://github.com/wyre-technology/node-atera/issues/28)) ([19ea1b7](https://github.com/wyre-technology/node-atera/commit/19ea1b73c2699872803eb8585d3b19b69a4c5e9e))
-
-## [1.0.3](https://github.com/wyre-technology/node-atera/compare/v1.0.2...v1.0.3) (2026-05-20)
+## [1.0.5](https://github.com/WYRE-AI/node-atera/compare/v1.0.4...v1.0.5) (2026-07-18)
 
 
 ### Bug Fixes
 
-* standardize on Node 22, harden HTTP layer, add dependabot ([#2](https://github.com/wyre-technology/node-atera/issues/2)) ([d93bf58](https://github.com/wyre-technology/node-atera/commit/d93bf58588888b925581ca4cfc6be53d6742ae87))
+* **tsconfig:** restore include/exclude globs ([#44](https://github.com/WYRE-AI/node-atera/issues/44)) ([56ba0aa](https://github.com/WYRE-AI/node-atera/commit/56ba0aa06156ec54357d8cd27161b60befd48b73))
 
-## [1.0.2](https://github.com/wyre-technology/node-atera/compare/v1.0.1...v1.0.2) (2026-03-02)
+## [1.0.4](https://github.com/WYRE-AI/node-atera/compare/v1.0.3...v1.0.4) (2026-06-08)
 
 
 ### Bug Fixes
 
-* require Node 22+ (semantic-release@25 compatibility) ([631a887](https://github.com/wyre-technology/node-atera/commit/631a887a5117eb12666e409f4e7fd1f9d8b4051d))
-* require Node 22+ (semantic-release@25 compatibility) ([b6a70f7](https://github.com/wyre-technology/node-atera/commit/b6a70f75aef602e5137d7345d32d31571a2399ff))
+* **security:** bump vitest + @vitest/coverage-v8 1.x -> 3.2.6 ([#28](https://github.com/WYRE-AI/node-atera/issues/28)) ([19ea1b7](https://github.com/WYRE-AI/node-atera/commit/19ea1b73c2699872803eb8585d3b19b69a4c5e9e))
+
+## [1.0.3](https://github.com/WYRE-AI/node-atera/compare/v1.0.2...v1.0.3) (2026-05-20)
+
+
+### Bug Fixes
+
+* standardize on Node 22, harden HTTP layer, add dependabot ([#2](https://github.com/WYRE-AI/node-atera/issues/2)) ([d93bf58](https://github.com/WYRE-AI/node-atera/commit/d93bf58588888b925581ca4cfc6be53d6742ae87))
+
+## [1.0.2](https://github.com/WYRE-AI/node-atera/compare/v1.0.1...v1.0.2) (2026-03-02)
+
+
+### Bug Fixes
+
+* require Node 22+ (semantic-release@25 compatibility) ([631a887](https://github.com/WYRE-AI/node-atera/commit/631a887a5117eb12666e409f4e7fd1f9d8b4051d))
+* require Node 22+ (semantic-release@25 compatibility) ([b6a70f7](https://github.com/WYRE-AI/node-atera/commit/b6a70f75aef602e5137d7345d32d31571a2399ff))
 
 ## [1.0.1](https://github.com/asachs01/node-atera/compare/v1.0.0...v1.0.1) (2026-02-05)
 

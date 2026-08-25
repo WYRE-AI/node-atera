@@ -1,5 +1,5 @@
 {
-  "name": "@wyre-technology/node-atera",
+  "name": "@wyre-ai/node-atera",
   "version": "1.0.7",
   "description": "Comprehensive, fully-typed Node.js/TypeScript library for the Atera REST API v3",
   "main": "./dist/index.cjs",
@@ -49,12 +49,12 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wyre-technology/node-atera.git"
+    "url": "git+https://github.com/WYRE-AI/node-atera.git"
   },
   "bugs": {
-    "url": "https://github.com/wyre-technology/node-atera/issues"
+    "url": "https://github.com/WYRE-AI/node-atera/issues"
   },
-  "homepage": "https://github.com/wyre-technology/node-atera#readme",
+  "homepage": "https://github.com/WYRE-AI/node-atera#readme",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
