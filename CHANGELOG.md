@@ -1,3 +1,11 @@
+## [1.0.8](https://github.com/WYRE-AI/node-atera/compare/v1.0.7...v1.0.8) (2026-08-25)
+
+
+### Bug Fixes
+
+* **deps:** ignore undici in dependabot -- nested unreachable copy in npm's bundled tree ([#72](https://github.com/WYRE-AI/node-atera/issues/72)) ([9298f7a](https://github.com/WYRE-AI/node-atera/commit/9298f7a0ce13b9d586e24151f92dd65deee9c445))
+* migrate to WYRE-AI org (npm scope, ghcr namespace, registry) ([#74](https://github.com/WYRE-AI/node-atera/issues/74)) ([3094f1c](https://github.com/WYRE-AI/node-atera/commit/3094f1cc755f16ec9319871f8d261dad202b2a76))
+
 ## [1.0.7](https://github.com/WYRE-AI/node-atera/compare/v1.0.6...v1.0.7) (2026-08-06)
 
 

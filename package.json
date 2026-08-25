@@ -1,6 +1,6 @@
 {
   "name": "@wyre-ai/node-atera",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Comprehensive, fully-typed Node.js/TypeScript library for the Atera REST API v3",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
