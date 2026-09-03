@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* global process, console */
 // Phase 1 of the PR-based release flow (task_1788457898992, Aaron ruling
 // "pipeline: pr-flow"). Computes the next version + release notes via
 // semantic-release's own Node API in --dry-run mode -- this is the safe,
