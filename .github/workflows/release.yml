@@ -191,6 +191,15 @@ jobs:
           owner: ${{ github.repository_owner }}
           repositories: ${{ github.event.repository.name }}
           permission-pull-requests: write
+          # Root cause of a live failure on node-crewhu (task_1788457898992):
+          # `gh pr create`/`gh pr view` internally query
+          # `repository.defaultBranchRef`, which needs `contents: read` --
+          # `metadata: read` (bundled into every App token automatically) is
+          # not enough. Reproduced directly against the GitHub API: a token
+          # scoped to metadata+pull_requests only gets
+          # "Resource not accessible by integration" on that field; adding
+          # contents:read fixes it. Read-only, so still least-privilege.
+          permission-contents: read
 
       - name: "Prepare: open or update release PR"
         if: steps.mode.outputs.mode == 'prepare' && steps.prepare.outputs.release_needed == 'true'
