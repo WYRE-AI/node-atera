@@ -1,3 +1,13 @@
+## [1.0.9](https://github.com/WYRE-AI/node-atera/compare/v1.0.8...v1.0.9) (2026-09-04)
+
+
+### Bug Fixes
+
+* **release:** add contents:read to the App token for gh pr create ([#80](https://github.com/WYRE-AI/node-atera/issues/80)) ([d4029f2](https://github.com/WYRE-AI/node-atera/commit/d4029f2d9b7e555a43db63c9843d0da414ba8582)), closes [WYRE-AI/node-crewhu#46](https://github.com/WYRE-AI/node-crewhu/issues/46)
+* **release:** restore persist-credentials:false, re-auth only for release ops ([#81](https://github.com/WYRE-AI/node-atera/issues/81)) ([92e2211](https://github.com/WYRE-AI/node-atera/commit/92e22111aa473a5dc2a9910b209799631e74ddf4))
+* **security:** resolve dependabot alerts via npm audit fix ([#77](https://github.com/WYRE-AI/node-atera/issues/77)) ([635ddd9](https://github.com/WYRE-AI/node-atera/commit/635ddd942bfd58ca0a7e69d520849c3fb60897d5))
+
+
 ## [1.0.8](https://github.com/WYRE-AI/node-atera/compare/v1.0.7...v1.0.8) (2026-08-25)
 
 
