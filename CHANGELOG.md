@@ -1,3 +1,11 @@
+# [1.1.0](https://github.com/WYRE-AI/node-atera/compare/v1.0.9...v1.1.0) (2026-09-04)
+
+
+### Features
+
+* **release:** use extracted CHANGELOG notes instead of --generate-notes ([#82](https://github.com/WYRE-AI/node-atera/issues/82)) ([1efff7d](https://github.com/WYRE-AI/node-atera/commit/1efff7d73f71f85235da53b59334f963cb66c24a)), closes [node-datto-rmm#77](https://github.com/node-datto-rmm/issues/77)
+
+
 ## [1.0.9](https://github.com/WYRE-AI/node-atera/compare/v1.0.8...v1.0.9) (2026-09-04)
 
 
