@@ -1,3 +1,9 @@
+## [Unreleased]
+
+### Security
+
+- **Resolved js-yaml high-severity advisory CVE-2026-84375** (fixed in js-yaml >= 4.3.2). js-yaml is only a transitive devDependency, pulled on the 4.x line via `cosmiconfig`. Added a scoped npm `override` (`cosmiconfig` → `js-yaml ^4.3.2`) to force the patched line. `npm audit` reports 0 vulnerabilities.
+
 # [1.1.0](https://github.com/WYRE-AI/node-atera/compare/v1.0.9...v1.1.0) (2026-09-04)
 
 
