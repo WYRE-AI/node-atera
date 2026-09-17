@@ -1,3 +1,11 @@
+## [1.1.1](https://github.com/WYRE-AI/node-atera/compare/v1.1.0...v1.1.1) (2026-09-15)
+
+
+### Bug Fixes
+
+* **deps:** resolve js-yaml CVE-2026-84375 ([#86](https://github.com/WYRE-AI/node-atera/issues/86)) ([4e1c7ed](https://github.com/WYRE-AI/node-atera/commit/4e1c7ed355e516287bafa96307add6ffd7c86876))
+
+
 ## [Unreleased]
 
 ### Security
