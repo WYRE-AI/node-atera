@@ -6,7 +6,7 @@ Comprehensive, fully-typed Node.js/TypeScript library for the Atera REST API v3.
 
 - Complete API coverage for all 90+ Atera API endpoints
 - Full TypeScript type definitions for all request/response payloads
-- Simple API key authentication via X-API-KEY header
+- API key authentication: JWT keys as `Authorization: Bearer`, legacy keys as `X-API-KEY`
 - Automatic pagination with async iterators
 - Built-in rate limiting (700 req/min) with backoff
 - Zero runtime dependencies
@@ -66,6 +66,8 @@ const client = new AteraClient({
   },
 });
 ```
+
+Current Atera API keys are JWTs (three base64url segments, issuer `AteraInterop`). The client sends those as `Authorization: Bearer` and does not also set `X-API-KEY`. Older static keys stay on `X-API-KEY` only. A pasted `Bearer ` prefix is stripped.
 
 ### Resources
 

@@ -46,7 +46,11 @@ export const DEFAULT_TIMEOUT_MS = 30_000;
  * Configuration for the Atera client
  */
 export interface AteraConfig {
-  /** API Key for authentication (X-API-KEY header) */
+  /**
+   * API key for authentication.
+   * JWT keys (three base64url segments) are sent as `Authorization: Bearer`.
+   * Legacy static keys are sent as `X-API-KEY`.
+   */
   apiKey: string;
   /** Base URL for the API (default: https://app.atera.com/api/v3) */
   baseUrl?: string;
