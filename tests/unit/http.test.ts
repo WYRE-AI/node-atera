@@ -10,7 +10,7 @@
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { HttpClient } from '../../src/http.js';
+import { HttpClient, authHeaders } from '../../src/http.js';
 import { RateLimiter } from '../../src/rate-limiter.js';
 import { resolveConfig } from '../../src/config.js';
 import {
@@ -114,5 +114,88 @@ describe('HttpClient response handling', () => {
       .catch((e: unknown) => e);
     expect(err).toBeInstanceOf(AteraError);
     expect((err as AteraError).response).toBe('teapot');
+  });
+});
+
+/**
+ * Unsigned sample with iss=AteraInterop, aud=apiUsers. Not a live credential.
+ * Header is base64url of {"alg":"RS256","typ":"JWT"}.
+ */
+const JWT = [
+  'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9',
+  'eyJpc3MiOiJBdGVyYUludGVyb3AiLCJhdWQiOiJhcGlVc2VycyJ9',
+  'c2lnbmF0dXJl',
+].join('.');
+
+describe('authHeaders', () => {
+  it('sends a JWT as Authorization Bearer and omits X-API-KEY', () => {
+    const headers = authHeaders(JWT);
+    expect(headers).toEqual({ Authorization: `Bearer ${JWT}` });
+    expect(headers['X-API-KEY']).toBeUndefined();
+  });
+
+  it('strips a pasted Bearer prefix before sending the token', () => {
+    expect(authHeaders(`Bearer ${JWT}`)).toEqual({ Authorization: `Bearer ${JWT}` });
+    expect(authHeaders(` bearer ${JWT} `)).toEqual({ Authorization: `Bearer ${JWT}` });
+  });
+
+  it('sends a legacy key as X-API-KEY only', () => {
+    const headers = authHeaders('test-api-key');
+    expect(headers).toEqual({ 'X-API-KEY': 'test-api-key' });
+    expect(headers['Authorization']).toBeUndefined();
+  });
+
+  it('does not treat dotted non-JWTs as Bearer tokens', () => {
+    expect(authHeaders('notajwt.with.dots')).toEqual({ 'X-API-KEY': 'notajwt.with.dots' });
+    expect(authHeaders('eyJhbGci.only-two')).toEqual({ 'X-API-KEY': 'eyJhbGci.only-two' });
+    expect(authHeaders('eyJhbGci..c2ln')).toEqual({ 'X-API-KEY': 'eyJhbGci..c2ln' });
+  });
+});
+
+describe('HttpClient auth headers', () => {
+  beforeEach(() => {
+    vi.stubGlobal('fetch', vi.fn());
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  function clientFor(apiKey: string): HttpClient {
+    const resolved = resolveConfig({ apiKey });
+    return new HttpClient(resolved, new RateLimiter(resolved.rateLimit));
+  }
+
+  async function sentHeaders(apiKey: string): Promise<Headers> {
+    let seen: Headers | undefined;
+    vi.mocked(fetch).mockImplementation(async (_input, init) => {
+      seen = new Headers(init?.headers);
+      return realResponse('[]');
+    });
+    await clientFor(apiKey).request('/agents');
+    if (!seen) {
+      throw new Error('fetch was not called');
+    }
+    return seen;
+  }
+
+  it('sends a JWT on Authorization and not X-API-KEY', async () => {
+    const headers = await sentHeaders(JWT);
+    expect(headers.get('authorization')).toBe(`Bearer ${JWT}`);
+    expect(headers.get('x-api-key')).toBeNull();
+    expect(headers.get('accept')).toBe('application/json');
+    expect(headers.get('content-type')).toBe('application/json');
+  });
+
+  it('strips a pasted Bearer prefix on the wire', async () => {
+    const headers = await sentHeaders(`Bearer ${JWT}`);
+    expect(headers.get('authorization')).toBe(`Bearer ${JWT}`);
+    expect(headers.get('x-api-key')).toBeNull();
+  });
+
+  it('sends a legacy key on X-API-KEY and not Authorization', async () => {
+    const headers = await sentHeaders('test-api-key');
+    expect(headers.get('x-api-key')).toBe('test-api-key');
+    expect(headers.get('authorization')).toBeNull();
   });
 });

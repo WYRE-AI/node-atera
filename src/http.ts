@@ -14,6 +14,58 @@ import {
 } from './errors.js';
 
 /**
+ * base64 or base64url, optional padding. JWT segments are base64url.
+ * Atera's current API keys are JWTs (issuer `AteraInterop`).
+ */
+const JWT_SEGMENT = /^[A-Za-z0-9+/_-]+={0,2}$/;
+
+/**
+ * Strip surrounding whitespace and a single leading `Bearer ` prefix so a
+ * token pasted from an Authorization header still matches.
+ */
+export function normalizeApiKey(apiKey: string): string {
+  return apiKey.trim().replace(/^Bearer\s+/i, '');
+}
+
+/**
+ * True when `apiKey` is a JWT: three dot-separated base64url segments whose
+ * header is a JSON object (`eyJ` is the base64url prefix of `{`).
+ *
+ * Atera rejects a JWT sent as `X-API-KEY` (401) and accepts
+ * `Authorization: Bearer` (WYRE-AI/atera-mcp#84).
+ */
+export function isJwtApiKey(apiKey: string): boolean {
+  const parts = normalizeApiKey(apiKey).split('.');
+  if (parts.length !== 3) {
+    return false;
+  }
+  const header = parts[0] ?? '';
+  const payload = parts[1] ?? '';
+  const signature = parts[2] ?? '';
+  if (!header.startsWith('eyJ')) {
+    return false;
+  }
+  return [header, payload, signature].every(
+    (part) => part.length > 0 && JWT_SEGMENT.test(part)
+  );
+}
+
+/**
+ * Authentication headers for an Atera API key.
+ *
+ * JWT-shaped keys are sent only as `Authorization: Bearer`. Atera rejects
+ * those keys when `X-API-KEY` is also present. Legacy static keys stay on
+ * `X-API-KEY` and are not sent as Bearer tokens.
+ */
+export function authHeaders(apiKey: string): Record<string, string> {
+  const token = normalizeApiKey(apiKey);
+  if (isJwtApiKey(token)) {
+    return { Authorization: `Bearer ${token}` };
+  }
+  return { 'X-API-KEY': token };
+}
+
+/**
  * HTTP request options
  */
 export interface RequestOptions {
@@ -80,9 +132,8 @@ export class HttpClient {
     // Wait for a rate limit slot
     await this.rateLimiter.waitForSlot();
 
-    // Build headers with API key authentication
     const headers: Record<string, string> = {
-      'X-API-KEY': this.config.apiKey,
+      ...authHeaders(this.config.apiKey),
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     };
