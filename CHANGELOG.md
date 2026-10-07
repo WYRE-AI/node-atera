@@ -1,3 +1,12 @@
+## [1.1.2](https://github.com/WYRE-AI/node-atera/compare/v1.1.1...v1.1.2) (2026-10-07)
+
+
+### Bug Fixes
+
+* **release:** disable http.followRedirects on authenticated git commands ([#88](https://github.com/WYRE-AI/node-atera/issues/88)) ([51066a2](https://github.com/WYRE-AI/node-atera/commit/51066a215e64f8959c137bb3c3bbfe69fab9fe27))
+* send JWT Atera API keys as Authorization Bearer ([#92](https://github.com/WYRE-AI/node-atera/issues/92)) ([f7b702b](https://github.com/WYRE-AI/node-atera/commit/f7b702b90cf824c4e6754282ea611358c152c2e7))
+
+
 ## [1.1.1](https://github.com/WYRE-AI/node-atera/compare/v1.1.0...v1.1.1) (2026-09-15)
 
 
