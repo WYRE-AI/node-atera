@@ -1,3 +1,11 @@
+## [1.1.3](https://github.com/WYRE-AI/node-atera/compare/v1.1.2...v1.1.3) (2026-10-08)
+
+
+### Bug Fixes
+
+* **release:** push release/next with App token + recognize unbracketed CHANGELOG headings ([#93](https://github.com/WYRE-AI/node-atera/issues/93)) ([53f3a60](https://github.com/WYRE-AI/node-atera/commit/53f3a60ab1dd7124fe7cfaf7bc66a0b422e00737)), closes [WYRE-AI/node-domotz#52](https://github.com/WYRE-AI/node-domotz/issues/52)
+
+
 ## [1.1.2](https://github.com/WYRE-AI/node-atera/compare/v1.1.1...v1.1.2) (2026-10-07)
 
 
