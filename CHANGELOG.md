@@ -1,3 +1,26 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+### Added
+
+- Configurable request timeout (`timeoutMs`, default 30s) enforced via `AbortSignal.timeout`
+- `.github/dependabot.yml` for weekly npm and GitHub Actions dependency updates
+
+### Changed
+
+- Standardized on a Node.js 22 baseline: CI matrix now `[22.x, 24.x]`, `tsup` target `node22`, `@types/node` bumped to `^22`
+- Network/transport failures and timeouts in the HTTP layer are now converted into typed `AteraError` instances instead of throwing raw `TypeError`
+
+### Security
+
+- Ran `npm audit fix`; remaining advisories are confined to the bundled `npm` CLI and `esbuild`/`vite` dev tooling (transitive, dev-only, require breaking major bumps)
+
 ## [1.1.2](https://github.com/WYRE-AI/node-atera/compare/v1.1.1...v1.1.2) (2026-10-07)
 
 
@@ -109,28 +132,6 @@
 
 * Initial implementation of node-atera TypeScript library ([bcc14db](https://github.com/asachs01/node-atera/commit/bcc14db42eac831e081f34673eb3b74e85e9b9e9))
 
-# Changelog
-
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-## [Unreleased]
-
-### Added
-
-- Configurable request timeout (`timeoutMs`, default 30s) enforced via `AbortSignal.timeout`
-- `.github/dependabot.yml` for weekly npm and GitHub Actions dependency updates
-
-### Changed
-
-- Standardized on a Node.js 22 baseline: CI matrix now `[22.x, 24.x]`, `tsup` target `node22`, `@types/node` bumped to `^22`
-- Network/transport failures and timeouts in the HTTP layer are now converted into typed `AteraError` instances instead of throwing raw `TypeError`
-
-### Security
-
-- Ran `npm audit fix`; remaining advisories are confined to the bundled `npm` CLI and `esbuild`/`vite` dev tooling (transitive, dev-only, require breaking major bumps)
 
 ## [0.1.0] - 2026-02-04
 
